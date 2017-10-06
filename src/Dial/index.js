@@ -36,6 +36,7 @@ class Dial extends Component {
       padding,
       pointerLength,
       pointerTexts,
+      pointerTextBox,
       pointerTextPosition,
       strokeWidth,
     } = this.props
@@ -71,6 +72,7 @@ class Dial extends Component {
 
     const pointerText = pointerTexts && pointerTexts.length ? <PointerText
         color={pointerColor}
+        textBox={pointerTextBox}
         texts={pointerTexts}
         xOffset={pointerTextPosition.x}
         yOffset={pointerTextPosition.y}

@@ -154,7 +154,13 @@ class App extends Component {
             pointerLength={43}
             pointerTexts={pointerTexts}
             pointerTextPosition={{x: 4, y: 4}}
-            strokeWidth={1.5}
+            pointerTextBox={{
+              borderColor: WHITE,
+              fill: BLACK,
+              height: 14,
+              width: 40,
+            }}
+            strokeWidth={2}
           />
         </svg>
       </div>

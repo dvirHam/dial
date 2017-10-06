@@ -4,6 +4,7 @@ class PointerText extends Component {
   render () {
     const {
       color,
+      textBox,
       texts,
       xOffset,
       yOffset,
@@ -21,10 +22,21 @@ class PointerText extends Component {
       )
     })
 
+    const textBoxElement = textBox ? <rect
+        stroke={textBox.borderColor}
+        fill={textBox.fill}
+        x={xOffset - textBox.width / 2}
+        y={yOffset}
+        width={textBox.width}
+        height={textBox.height}
+      /> :  null
+
     const maxFontSize = Math.max(...texts.map(text => text.fontSize))
 
     return (
       <g className="PointerText">
+        {textBoxElement}
+
         <text
           x={xOffset}
           y={yOffset + maxFontSize}

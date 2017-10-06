@@ -8,32 +8,29 @@ class BandsAndTicks extends Component {
     const {
       angularScale,
       bandRanges,
-      radialOffset,
-      maxArcLength,
+      circleRadius,
       innerColor,
+      maxArcLength,
       strokeWidth,
-      tickRadialOffset,
-      tickLength,
-      tickThickness,
       zeroAngularOffset,
     } = this.props
 
     const bands = bandRanges.map((band, index) => {
-      const tickPosition = band.tickPosition
-      if (tickPosition) {
+      const tick = band.tick
+      if (tick) {
         return <Tick
           key={index}
-          rotation={angularScale(band[tickPosition])}
-          radialOffset={radialOffset - tickRadialOffset}
+          rotation={angularScale(tick.value)}
+          radialOffset={circleRadius - tick.radialOffset}
           color={band.color}
-          strokeWidth={tickThickness}
-          length={tickLength}
+          strokeWidth={tick.thickness}
+          length={tick.length}
         />
       } else {
         return <BandArc
           key={index}
           outerColor={band.color}
-          radialOffset={radialOffset}
+          circleRadius={circleRadius}
           maxArcLength={maxArcLength}
           endAngle={angularScale(band.to)}
           innerColor={band.hollow ? null : innerColor}

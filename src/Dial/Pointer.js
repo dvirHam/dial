@@ -3,9 +3,9 @@ import React, { Component } from 'react'
 class Pointer extends Component {
   render() {
     const {
-      rotation,
-      length,
       color,
+      length,
+      rotation,
       strokeWidth,
     } = this.props
 

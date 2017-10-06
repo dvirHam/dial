@@ -3,55 +3,36 @@ import React, { Component } from 'react'
 class ScaleMarkers extends Component {
   render () {
     const {
-      arcColor,
       angularScale,
-      radialOffset,
-      labelFontSize,
-      labelRadialOffset,
-      majorMarkerLabels,
-      majorMarkerSize,
-      majorMarkerValues,
-      minorMarkerSize,
-      minorMarkerValues,
+      circleRadius,
+      markers,
+      scaleColor,
       strokeWidth,
     } = this.props
 
-    const minorMarkers = minorMarkerValues.map((value, index) => {
+    const markerElements = markers.map((marker, index) => {
       return <line
         key={index}
-        stroke={arcColor}
+        stroke={scaleColor}
         strokeWidth={strokeWidth}
         strokeLinecap="round"
-        transform={`rotate(${angularScale(value)})`}
+        transform={`rotate(${angularScale(marker.value)})`}
         x1={0}
-        y1={-radialOffset}
+        y1={-circleRadius}
         x2={0}
-        y2={minorMarkerSize - radialOffset}
+        y2={marker.size - circleRadius}
       />
     })
 
-    const majorMarkers = majorMarkerValues.map((value, index) => {
-      return <line
-        key={index}
-        stroke={arcColor}
-        strokeWidth={strokeWidth}
-        strokeLinecap="round"
-        transform={`rotate(${angularScale(value)})`}
-        x1={0}
-        y1={-radialOffset}
-        x2={0}
-        y2={majorMarkerSize - radialOffset}
-      />
-    })
+    const markerLabels = markers.map((marker, index) => {
+      const label = marker.label
+      if (!label) { return null }
 
-    const markerLabels = majorMarkerValues.map((value, index) => {
-      const angle = angularScale(value)
-      const verticalOffset = radialOffset
-        - labelRadialOffset
-        - labelFontSize / 2
-        - majorMarkerSize
-
-      const labelText = majorMarkerLabels[index]
+      const angle = angularScale(marker.value)
+      const verticalOffset = circleRadius
+        - label.radialOffset
+        - label.fontSize / 2
+        - marker.size
 
       return <g
         key={index}
@@ -62,20 +43,22 @@ class ScaleMarkers extends Component {
         }>
         <text
           style={{textAnchor: 'middle'}}
-          transform={`translate(0, ${labelFontSize / 2})`}
-          fill={arcColor}
-          letterSpacing="0"
-          fontFamily="Tahoma"
-          fontSize={labelFontSize}>
-          {labelText}
+          transform={
+            `translate(0, ${label.radialOffset + label.fontSize / 2})`
+          }
+          fill={label.color}
+          letterSpacing={label.letterSpacing}
+          fontFamily={label.fontFamily}
+          fontSize={label.fontSize}
+        >
+          {label.text}
         </text>
       </g>
     })
 
     return (
       <g className="ScaleMarkers">
-        {majorMarkers}
-        {minorMarkers}
+        {markerElements}
         {markerLabels}
       </g>
     )

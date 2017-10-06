@@ -3,10 +3,10 @@ import React, { Component } from 'react'
 class BandArc extends Component {
   render () {
     const {
-      radialOffset,
-      maxArcLength,
+      circleRadius,
       endAngle,
       innerColor,
+      maxArcLength,
       outerColor,
       startAngle,
       strokeWidth,
@@ -31,7 +31,7 @@ class BandArc extends Component {
           strokeDashoffset={
             `${zeroAngularOffset + halfStroke - arcAngularOffset}`
           }
-          r={radialOffset}
+          r={circleRadius}
         />
 
         <circle
@@ -47,7 +47,7 @@ class BandArc extends Component {
           strokeDashoffset={
             `${zeroAngularOffset - halfStroke - arcAngularOffset}`
           }
-          r={radialOffset}
+          r={circleRadius}
         />
       </g>
     )

@@ -9,48 +9,35 @@ import ScaleArc from './ScaleArc'
 import ScaleMarkers from './ScaleMarkers'
 
 const BLACK = '#333333'
-const GREEN = '#18F360'
-const WHITE = '#ffffff'
 
-function getColorFromRanges(value, ranges) {
-  const containingRange = ranges.find((range) => {
+function getColorFromRanges(value, ranges, defaultColor) {
+  const containingRange = (ranges || []).find((range) => {
     const lowestValue = Math.min(range.from, range.to)
     const highestValue = Math.max(range.from, range.to)
     return lowestValue <= value && highestValue >= value
   })
-  return (containingRange || {color: GREEN}).color
+  return (containingRange || {color: defaultColor}).color
 }
 
 class Dial extends Component {
   render () {
     const {
+      arcColor,
       bandRanges,
       circleRadius,
       currentValue,
-      donutOffset,
-      donutRadius,
-      donutValue,
+      defaultPointerColor,
+      donut,
       highValue,
       lowValue,
-      majorMarkerValues,
-      majorMarkerLabelFontSize,
-      majorMarkerLabelRadialOffset,
-      majorMarkerLabels,
-      majorMarkerSize,
+      markers,
       maxRotation,
       minRotation,
-      minorMarkerSize,
-      minorMarkerValues,
       padding,
       pointerLength,
       pointerTexts,
-      pointerTextsX,
-      pointerTextsY,
+      pointerTextPosition,
       strokeWidth,
-      arcColor,
-      tickLength,
-      tickRadialOffset,
-      tickThickness,
     } = this.props
 
     const angularScale = scaleLinear()
@@ -63,14 +50,40 @@ class Dial extends Component {
     const centreX = padding + circleRadius
     const centreY = padding + circleRadius
 
-    const pointerColor = getColorFromRanges(currentValue, bandRanges)
+    const pointerColor = getColorFromRanges(
+      currentValue, bandRanges, defaultPointerColor
+    )
 
-    const donutElement = donutValue ? <Donut
-      color={WHITE}
-      radialOffset={circleRadius + donutOffset}
-      radius={donutRadius}
-      rotation={angularScale(donutValue)}
+    const donutElement = donut ? <Donut
+        color={donut.color}
+        radialOffset={circleRadius + donut.radialOffset || 2}
+        radius={donut.radius || 2.5}
+        rotation={angularScale(donut.value)}
+        strokeWidth={strokeWidth}
+      /> : null
+
+    const pointer = pointerLength ? <Pointer
+        rotation={angularScale(currentValue)}
+        length={pointerLength}
+        strokeWidth={strokeWidth}
+        color={pointerColor}
+      /> : null
+
+    const pointerText = pointerTexts && pointerTexts.length ? <PointerText
+        color={pointerColor}
+        texts={pointerTexts}
+        xOffset={pointerTextPosition.x}
+        yOffset={pointerTextPosition.y}
+      /> : null
+
+    const bandsAndTicks = bandRanges && bandRanges.length ? <BandsAndTicks
+      angularScale={angularScale}
+      bandRanges={bandRanges}
+      circleRadius={circleRadius}
+      maxArcLength={circumference}
+      innerColor={BLACK}
       strokeWidth={strokeWidth}
+      zeroAngularOffset={zeroAngularOffset}
     /> : null
 
     return (
@@ -87,48 +100,17 @@ class Dial extends Component {
           />
 
           <ScaleMarkers
-            arcColor={arcColor}
+            scaleColor={arcColor}
+            markers={markers}
             angularScale={angularScale}
-            radialOffset={circleRadius}
-            labelFontSize={majorMarkerLabelFontSize}
-            labelRadialOffset={majorMarkerLabelRadialOffset}
-            majorMarkerLabels={majorMarkerLabels}
-            majorMarkerSize={majorMarkerSize}
-            majorMarkerValues={majorMarkerValues}
-            minorMarkerSize={minorMarkerSize}
-            minorMarkerValues={minorMarkerValues}
+            circleRadius={circleRadius}
             strokeWidth={strokeWidth}
           />
 
           {donutElement}
-
-          <BandsAndTicks
-            angularScale={angularScale}
-            bandRanges={bandRanges}
-            radialOffset={circleRadius}
-            maxArcLength={circumference}
-            innerColor={BLACK}
-            strokeWidth={strokeWidth}
-            tickRadialOffset={tickRadialOffset}
-            tickLength={tickLength}
-            tickThickness={tickThickness}
-            zeroAngularOffset={zeroAngularOffset}
-          />
-
-          <PointerText
-            color={pointerColor}
-            texts={pointerTexts}
-            xOffset={pointerTextsX}
-            yOffset={pointerTextsY}
-          />
-
-          <Pointer
-            rotation={angularScale(currentValue)}
-            length={pointerLength}
-            strokeWidth={strokeWidth}
-            color={pointerColor}
-          />
-
+          {bandsAndTicks}
+          {pointerText}
+          {pointer}
         </g>
       </g>
     )

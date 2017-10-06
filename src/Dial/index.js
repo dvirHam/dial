@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { scaleLinear } from 'd3-scale'
+import PropTypes from 'prop-types'
 
 import BandsAndTicks from './BandsAndTicks'
 import Donut from './Donut'
@@ -20,6 +21,26 @@ function getColorFromRanges(value, ranges, defaultColor) {
 }
 
 class Dial extends Component {
+  static propTypes = {
+    arcColor: PropTypes.string,
+    bandRanges: PropTypes.arrayOf(PropTypes.object),
+    circleRadius: PropTypes.number.isRequired,
+    currentValue: PropTypes.number.isRequired,
+    defaultPointerColor: PropTypes.string.isRequired,
+    donut: PropTypes.object,
+    highValue: PropTypes.number.isRequired,
+    lowValue: PropTypes.number.isRequired,
+    markers: PropTypes.arrayOf(PropTypes.object).isRequired,
+    maxRotation: PropTypes.number.isRequired,
+    minRotation: PropTypes.number.isRequired,
+    padding: PropTypes.number.isRequired,
+    pointerLength: PropTypes.number,
+    pointerTexts: PropTypes.arrayOf(PropTypes.object),
+    pointerTextBox: PropTypes.object,
+    pointerTextPosition: PropTypes.object,
+    strokeWidth: PropTypes.number.isRequired,
+  }
+
   render () {
     const {
       arcColor,

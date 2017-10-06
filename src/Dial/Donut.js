@@ -1,6 +1,15 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 class Donut extends Component {
+  static propTypes = {
+    color: PropTypes.string.isRequired,
+    radialOffset: PropTypes.number.isRequired,
+    radius: PropTypes.number.isRequired,
+    rotation: PropTypes.number.isRequired,
+    strokeWidth: PropTypes.number.isRequired,
+  }
+
   render() {
     const {
       color,

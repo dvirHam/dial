@@ -1,6 +1,15 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 class PointerText extends Component {
+  static propTypes = {
+    color: PropTypes.string.isRequired,
+    textBox: PropTypes.object,
+    texts: PropTypes.arrayOf(PropTypes.object),
+    xOffset: PropTypes.number.isRequired,
+    yOffset: PropTypes.number.isRequired,
+  }
+
   render () {
     const {
       color,

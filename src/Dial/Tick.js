@@ -1,6 +1,15 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 class Tick extends Component {
+  static propTypes = {
+    rotation: PropTypes.number.isRequired,
+    radialOffset: PropTypes.number.isRequired,
+    color: PropTypes.string.isRequired,
+    strokeWidth: PropTypes.number.isRequired,
+    length: PropTypes.number.isRequired,
+  }
+
   render () {
     const {
       rotation,

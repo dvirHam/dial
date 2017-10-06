@@ -1,6 +1,15 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 class ScaleMarkers extends Component {
+  static propTypes = {
+    angularScale: PropTypes.func.isRequired,
+    circleRadius: PropTypes.number.isRequired,
+    markers: PropTypes.arrayOf(PropTypes.object),
+    scaleColor: PropTypes.string.isRequired,
+    strokeWidth: PropTypes.number.isRequired,
+  }
+
   render () {
     const {
       angularScale,

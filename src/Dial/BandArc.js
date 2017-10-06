@@ -1,6 +1,18 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 class BandArc extends Component {
+  static propTypes = {
+    circleRadius: PropTypes.number.isRequired,
+    endAngle: PropTypes.number.isRequired,
+    innerColor: PropTypes.string,
+    maxArcLength: PropTypes.number.isRequired,
+    outerColor: PropTypes.string.isRequired,
+    startAngle: PropTypes.number.isRequired,
+    strokeWidth: PropTypes.number.isRequired,
+    zeroAngularOffset: PropTypes.number.isRequired,
+  }
+
   render () {
     const {
       circleRadius,

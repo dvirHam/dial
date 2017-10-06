@@ -1,6 +1,14 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 class Pointer extends Component {
+  static propTypes = {
+    color: PropTypes.string.isRequired,
+    length: PropTypes.number.isRequired,
+    rotation: PropTypes.number.isRequired,
+    strokeWidth: PropTypes.number.isRequired,
+  }
+
   render() {
     const {
       color,

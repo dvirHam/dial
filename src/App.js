@@ -16,9 +16,9 @@ class App extends Component {
           <Dial
             arcColor={WHITE}
             bandRanges={[
-              {from: 0, to: 1, tickPosition: null, color: RED},
+              {from: 0, to: 2, tickPosition: null, color: RED, hollow: true},
               {from: 14, to: 16, tickPosition: 'from', color: AMBER},
-              {from: 16, to: 20, tickPosition: null, color: RED}
+              {from: 16, to: 20, tickPosition: null, color: RED, hollow: false}
             ]}
             circleRadius={40}
             currentValue={4.567}

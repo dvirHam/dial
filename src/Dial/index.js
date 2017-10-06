@@ -43,6 +43,9 @@ class Dial extends Component {
       minorMarkerValues,
       padding,
       pointerLength,
+      pointerTexts,
+      pointerTextsX,
+      pointerTextsY,
       strokeWidth,
       arcColor,
       tickLength,
@@ -110,6 +113,13 @@ class Dial extends Component {
             tickLength={tickLength}
             tickThickness={tickThickness}
             zeroAngularOffset={zeroAngularOffset}
+          />
+
+          <PointerText
+            color={pointerColor}
+            texts={pointerTexts}
+            xOffset={pointerTextsX}
+            yOffset={pointerTextsY}
           />
 
           <Pointer

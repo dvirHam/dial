@@ -3,31 +3,35 @@ import React, { Component } from 'react'
 class PointerText extends Component {
   render () {
     const {
-      fillColor,
-      fontFamily,
-      fontSize,
-      letterSpacing,
-      textAnchor,
-      x,
-      y,
-      value,
+      color,
+      texts,
+      xOffset,
+      yOffset,
     } = this.props
 
-    const displayText = value ? 'block' : 'none'
+    const tspans = texts.map((text, index) => {
+      return (
+        <tspan
+          key={index}
+          fontFamily={text.fontFamily}
+          fontSize={text.fontSize}
+          letterSpacing={text.letterSpacing}
+          textAnchor={text.textAnchor}
+        >{text.value}</tspan>
+      )
+    })
+
+    const maxFontSize = Math.max(...texts.map(text => text.fontSize))
 
     return (
       <g className="PointerText">
         <text
-          display={displayText}
-          fill={fillColor || '#18F360'}
-          fontFamily={fontFamily}
-          fontSize={fontSize}
-          letterSpacing={letterSpacing}
-          textAnchor={textAnchor}
-          x={x}
-          y={y}
+          x={xOffset}
+          y={yOffset + maxFontSize}
+          fill={color}
+          dominantBaseline="auto"
         >
-          {value}
+          {tspans}
         </text>
       </g>
     )

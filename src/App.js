@@ -38,6 +38,31 @@ class App extends Component {
             minRotation={-120}
             padding={40}
             pointerLength={43}
+            pointerTexts={[
+              {
+                fontFamily: 'Tahoma',
+                fontSize: 11,
+                letterSpacing: 0.4,
+                textAnchor: 'middle',
+                value: 45,
+              },
+              {
+                fontFamily: 'Tahoma',
+                fontSize: 8.5,
+                letterSpacing: 0,
+                textAnchor: 'middle',
+                value: ".",
+              },
+              {
+                fontFamily: 'Tahoma',
+                fontSize: 8.5,
+                letterSpacing: 0,
+                textAnchor: 'middle',
+                value: 26,
+              },
+            ]}
+            pointerTextsX={4}
+            pointerTextsY={4}
             strokeWidth={1.5}
             tickRadialOffset={2}
             tickLength={6}

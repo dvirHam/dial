@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 class Pointer extends Component {
   static propTypes = {
+    arrowSize: PropTypes.number.isRequired,
     color: PropTypes.string.isRequired,
     length: PropTypes.number.isRequired,
     rotation: PropTypes.number.isRequired,
@@ -11,6 +12,7 @@ class Pointer extends Component {
 
   render() {
     const {
+      arrowSize,
       color,
       length,
       rotation,
@@ -18,9 +20,8 @@ class Pointer extends Component {
     } = this.props
 
     return (
-      <g className="Pointer">
+      <g className="Pointer" transform={`rotate(${rotation})`}>
         <line
-          transform={`rotate(${rotation})`}
           x1={0}
           x2={0}
           y1={0}
@@ -36,3 +37,6 @@ class Pointer extends Component {
 }
 
 export default Pointer
+
+
+

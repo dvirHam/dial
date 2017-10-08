@@ -44,7 +44,7 @@ class BandsAndTicks extends Component {
           circleRadius={circleRadius}
           maxArcLength={maxArcLength}
           endAngle={angularScale(band.to)}
-          innerColor={band.hollow ? null : innerColor}
+          innerColor={band.hollow ? innerColor : null }
           startAngle={angularScale(band.from)}
           strokeWidth={strokeWidth}
           zeroAngularOffset={zeroAngularOffset}

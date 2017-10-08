@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Dial from './Dial/'
+import DialGauge from './DialGauge/'
 
 const BLACK = '#333333'
 const WHITE = '#ffffff'
@@ -112,11 +112,12 @@ class App extends Component {
 
     const pointerTexts = [
       {
+        color: '#d86',
         fontFamily: 'Tahoma',
         fontSize: 11,
         letterSpacing: 0.4,
         textAnchor: 'middle',
-        value: 45,
+        value: 59,
       },
       {
         fontFamily: 'Tahoma',
@@ -138,14 +139,16 @@ class App extends Component {
       <div className="App">
         <svg width={400} height={400} >
           <rect width={400} height={400} fill={BLACK} />
-          <Dial
+          <DialGauge
+            arrowSize={10}
             arcColor={WHITE}
             bandRanges={bandRanges}
             circleRadius={40}
-            currentValue={4.567}
+            currentValue={12}
             defaultPointerColor={GREEN}
             donut={donut}
             highValue={20}
+            innerColor={BLACK}
             lowValue={0}
             markers={markers}
             maxRotation={60}

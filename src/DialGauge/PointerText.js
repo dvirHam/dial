@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 class PointerText extends Component {
   static propTypes = {
-    color: PropTypes.string.isRequired,
+    pointerColor: PropTypes.string.isRequired,
     textBox: PropTypes.object,
     texts: PropTypes.arrayOf(PropTypes.object),
     xOffset: PropTypes.number.isRequired,
@@ -12,7 +12,7 @@ class PointerText extends Component {
 
   render () {
     const {
-      color,
+      pointerColor,
       textBox,
       texts,
       xOffset,
@@ -23,6 +23,7 @@ class PointerText extends Component {
       return (
         <tspan
           key={index}
+          fill={text.color || pointerColor}
           fontFamily={text.fontFamily}
           fontSize={text.fontSize}
           letterSpacing={text.letterSpacing}
@@ -49,7 +50,6 @@ class PointerText extends Component {
         <text
           x={xOffset}
           y={yOffset + maxFontSize}
-          fill={color}
           dominantBaseline="auto"
         >
           {tspans}

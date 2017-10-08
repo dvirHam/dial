@@ -9,8 +9,6 @@ import PointerText from './PointerText'
 import ScaleArc from './ScaleArc'
 import ScaleMarkers from './ScaleMarkers'
 
-const BLACK = '#333333'
-
 function getColorFromRanges(value, ranges, defaultColor) {
   const containingRange = (ranges || []).find((range) => {
     const lowestValue = Math.min(range.from, range.to)
@@ -20,8 +18,9 @@ function getColorFromRanges(value, ranges, defaultColor) {
   return (containingRange || {color: defaultColor}).color
 }
 
-class Dial extends Component {
+class DialGauge extends Component {
   static propTypes = {
+    arrowSize: PropTypes.number,
     arcColor: PropTypes.string,
     bandRanges: PropTypes.arrayOf(PropTypes.object),
     circleRadius: PropTypes.number.isRequired,
@@ -29,6 +28,7 @@ class Dial extends Component {
     defaultPointerColor: PropTypes.string.isRequired,
     donut: PropTypes.object,
     highValue: PropTypes.number.isRequired,
+    innerColor: PropTypes.string.isRequired,
     lowValue: PropTypes.number.isRequired,
     markers: PropTypes.arrayOf(PropTypes.object).isRequired,
     maxRotation: PropTypes.number.isRequired,
@@ -43,6 +43,7 @@ class Dial extends Component {
 
   render () {
     const {
+      arrowSize,
       arcColor,
       bandRanges,
       circleRadius,
@@ -50,6 +51,7 @@ class Dial extends Component {
       defaultPointerColor,
       donut,
       highValue,
+      innerColor,
       lowValue,
       markers,
       maxRotation,
@@ -85,6 +87,7 @@ class Dial extends Component {
       /> : null
 
     const pointer = pointerLength ? <Pointer
+        arrowSize={arrowSize || 0}
         rotation={angularScale(currentValue)}
         length={pointerLength}
         strokeWidth={strokeWidth}
@@ -92,7 +95,7 @@ class Dial extends Component {
       /> : null
 
     const pointerText = pointerTexts && pointerTexts.length ? <PointerText
-        color={pointerColor}
+        pointerColor={pointerColor}
         textBox={pointerTextBox}
         texts={pointerTexts}
         xOffset={pointerTextPosition.x}
@@ -104,13 +107,13 @@ class Dial extends Component {
       bandRanges={bandRanges}
       circleRadius={circleRadius}
       maxArcLength={circumference}
-      innerColor={BLACK}
+      innerColor={innerColor}
       strokeWidth={strokeWidth}
       zeroAngularOffset={zeroAngularOffset}
     /> : null
 
     return (
-      <g className="Dial" >
+      <g className="DialGauge" >
         <g transform={`translate(${centreX},${centreY})`}>
           <ScaleArc
             arcColor={arcColor}
@@ -140,4 +143,4 @@ class Dial extends Component {
   }
 }
 
-export default Dial
+export default DialGauge

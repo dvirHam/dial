@@ -24,6 +24,7 @@ class DialGauge extends Component {
     arcColor: PropTypes.string,
     bandRanges: PropTypes.arrayOf(PropTypes.object),
     circleRadius: PropTypes.number.isRequired,
+    clamped: PropTypes.bool.isRequired,
     currentValue: PropTypes.number.isRequired,
     defaultPointerColor: PropTypes.string.isRequired,
     donut: PropTypes.object,
@@ -47,6 +48,7 @@ class DialGauge extends Component {
       arcColor,
       bandRanges,
       circleRadius,
+      clamped,
       currentValue,
       defaultPointerColor,
       donut,
@@ -67,7 +69,7 @@ class DialGauge extends Component {
     const angularScale = scaleLinear()
       .domain([lowValue, highValue])
       .range([minRotation, maxRotation])
-      .clamp(true)
+      .clamp(clamped)
 
     const circumference = Math.PI * 2 * circleRadius
     const zeroAngularOffset = circumference / 4

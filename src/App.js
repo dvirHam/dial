@@ -12,7 +12,7 @@ class App extends Component {
   render() {
     const markers = [
       {
-        value: 0,
+        value: -1,
         size: 6,
         label: {
           color: WHITE,
@@ -144,6 +144,7 @@ class App extends Component {
             arcColor={WHITE}
             bandRanges={bandRanges}
             circleRadius={40}
+            clamped={true}
             currentValue={12}
             defaultPointerColor={GREEN}
             donut={donut}

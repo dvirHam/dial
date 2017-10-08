@@ -48,7 +48,7 @@ class ScaleMarkers extends Component {
           rotate(${-angle},0,${-circleRadius})`
         }>
         <text
-          style={{textAnchor: 'middle'}}
+          style={{textAnchor: 'middle', dominantBaseline: 'central'}}
           fill={label.color}
           letterSpacing={label.letterSpacing}
           fontFamily={label.fontFamily}

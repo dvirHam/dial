@@ -19,7 +19,7 @@ class App extends Component {
           fontFamily: 'Tahoma',
           fontSize: 9.8,
           letterSpacing: 0,
-          radialOffset: 2,
+          radialOffset: 8,
           text: "L",
         }
       },
@@ -35,8 +35,8 @@ class App extends Component {
           fontFamily: 'Tahoma',
           fontSize: 9.8,
           letterSpacing: 0,
-          radialOffset: 2,
-          text: "6"
+          radialOffset: 8,
+          text: "6",
         }
       },
       {
@@ -51,12 +51,12 @@ class App extends Component {
           fontFamily: 'Tahoma',
           fontSize: 9.8,
           letterSpacing: 0,
-          radialOffset: 2,
-          text: "12"
+          radialOffset: 8,
+          text: "12",
         }
       },
       {
-        value: 15,
+        value: 6,
         size: 3
       },
       {
@@ -67,8 +67,8 @@ class App extends Component {
           fontFamily: 'Tahoma',
           fontSize: 9.8,
           letterSpacing: 0,
-          radialOffset: 2,
-          text: "18"
+          radialOffset: 8,
+          text: "18",
         }
       },
       {

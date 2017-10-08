@@ -38,23 +38,17 @@ class ScaleMarkers extends Component {
       if (!label) { return null }
 
       const angle = angularScale(marker.value)
-      const verticalOffset = circleRadius
-        - label.radialOffset
-        - label.fontSize / 2
-        - marker.size
 
       return <g
         key={index}
         transform={`
-          translate(0, ${-verticalOffset})
+          translate(0, ${-circleRadius})
           rotate(${angle})
-          rotate(${-angle},0,${-verticalOffset})`
+          translate(0, ${label.radialOffset + marker.size})
+          rotate(${-angle},0,${-circleRadius})`
         }>
         <text
           style={{textAnchor: 'middle'}}
-          transform={
-            `translate(0, ${label.radialOffset + label.fontSize / 2})`
-          }
           fill={label.color}
           letterSpacing={label.letterSpacing}
           fontFamily={label.fontFamily}

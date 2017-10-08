@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 class Pointer extends Component {
   static propTypes = {
-    arrowSize: PropTypes.number.isRequired,
+    arrowSize: PropTypes.number,
     color: PropTypes.string.isRequired,
     length: PropTypes.number.isRequired,
     rotation: PropTypes.number.isRequired,
@@ -19,6 +19,19 @@ class Pointer extends Component {
       strokeWidth,
     } = this.props
 
+    const arrowHead = arrowSize ? <polygon
+        stroke={color}
+        strokeWidth={strokeWidth}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        points={`
+          ${-arrowSize / 2},${arrowSize / 2} 0,
+          ${-arrowSize / 2} ${arrowSize / 2},
+          ${arrowSize / 2}
+        `}
+        transform={`translate(0, ${-length})`}
+      /> : null
+
     return (
       <g className="Pointer" transform={`rotate(${rotation})`}>
         <line
@@ -31,12 +44,11 @@ class Pointer extends Component {
           strokeLinecap="round"
           strokeLinejoin="round"
         />
+
+        {arrowHead}
       </g>
     )
   }
 }
 
 export default Pointer
-
-
-

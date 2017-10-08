@@ -87,7 +87,7 @@ class DialGauge extends Component {
       /> : null
 
     const pointer = pointerLength ? <Pointer
-        arrowSize={arrowSize || 0}
+        arrowSize={arrowSize}
         rotation={angularScale(currentValue)}
         length={pointerLength}
         strokeWidth={strokeWidth}

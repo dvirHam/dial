@@ -154,7 +154,7 @@ class App extends Component {
             maxRotation={60}
             minRotation={-120}
             padding={40}
-            pointerLength={43}
+            pointerLength={33}
             pointerTexts={pointerTexts}
             pointerTextPosition={{x: 4, y: 4}}
             pointerTextBox={{

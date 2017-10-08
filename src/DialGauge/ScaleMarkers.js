@@ -20,7 +20,7 @@ class ScaleMarkers extends Component {
     } = this.props
 
     const markerElements = markers.map((marker, index) => {
-      return <line
+      return marker.size ? <line
         key={index}
         stroke={scaleColor}
         strokeWidth={strokeWidth}
@@ -30,7 +30,7 @@ class ScaleMarkers extends Component {
         y1={-circleRadius}
         x2={0}
         y2={marker.size - circleRadius}
-      />
+      /> : null
     })
 
     const markerLabels = markers.map((marker, index) => {
